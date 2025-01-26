@@ -5,10 +5,10 @@
         static void Main(string[] args)
         {
             #region 1 - Uso das classes, objetos, herança, atribuindo valor as apropriedades e as utilizando, métodos.
-            //var pagamentoBoleto = new PagamentoBoleto("12312312312399");
+            //var pagamentoBoleto = new PagamentoBoletoTeste("12312312312399");
             //pagamentoBoleto.Vencimento = DateTime.Now;
 
-            //var pagamentoCartao = new PagamentoCartaoCredito();
+            //var pagamentoCartao = new PagamentoCartaoCreditoTeste();
             //pagamentoCartao.Vencimento = DateTime.Now;
             //pagamentoCartao.NumeroCartao = "1234 1234 9832 0233";
 
@@ -17,13 +17,13 @@
             #endregion
 
             #region 2 - uso de virtual com ovveride - Polimorfismo
-            //var papagaio = new Papagaio();
+            //Papagaio papagaio = new Papagaio();
             //var bemTeVi = new BemTeVi();
             //papagaio.Som();
             //bemTeVi.Som();
             #endregion
 
-            #region 3 - ...
+            #region 3 - Propriedades
 
             #endregion
 
@@ -31,7 +31,10 @@
     }
 
 
-    class Pagamento
+
+
+
+    class PagamentoTeste
     {
         public DateTime Vencimento;
 
@@ -41,11 +44,11 @@
         }
     }
 
-    class PagamentoBoleto : Pagamento
+    class PagamentoBoletoTeste : PagamentoTeste
     {
         public string NumeroBoleto;
 
-        public PagamentoBoleto(string numeroBoleto)
+        public PagamentoBoletoTeste(string numeroBoleto)
         {
             NumeroBoleto = numeroBoleto;
         }
@@ -58,7 +61,7 @@
         }
     }
 
-    class PagamentoCartaoCredito : Pagamento
+    class PagamentoCartaoCreditoTeste : PagamentoTeste
     {
         public string NumeroCartao;
 
