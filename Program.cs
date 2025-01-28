@@ -1,19 +1,18 @@
-﻿namespace OOP
+﻿using ExercicioUm.Heranca;
+using ExercicioDois.Polimorfismo;
+
+namespace OOP
 {
     internal class Program
     {
         static void Main(string[] args)
         {
             #region 1 - Uso das classes, objetos, herança, atribuindo valor as apropriedades e as utilizando, métodos.
-            //var pagamentoBoleto = new PagamentoBoletoTeste("12312312312399");
-            //pagamentoBoleto.Vencimento = DateTime.Now;
-
-            //var pagamentoCartao = new PagamentoCartaoCreditoTeste();
-            //pagamentoCartao.Vencimento = DateTime.Now;
-            //pagamentoCartao.NumeroCartao = "1234 1234 9832 0233";
-
-            ////pagamentoCartao.Pagar();
+            //var pagamentoBoleto = new PagamentoBoleto("1231239999123123", DateTime.Now);
             //pagamentoBoleto.Pagar();
+
+            //var pagamentoCartao = new PagamentoCartaoCredito("1234 5678 9345 2934", DateTime.Now);
+            //pagamentoCartao.Pagar();
             #endregion
 
             #region 2 - uso de virtual com ovveride - Polimorfismo
@@ -23,80 +22,63 @@
             //bemTeVi.Som();
             #endregion
 
-            #region 3 - Propriedades
-
+            #region 3 - (OBS.: PRECISO AJEITAR O ARQUIVO program.cs PARA MELHORAR A LEITURA)Propriedades - uso de prop privada, acessores (get, set), métodos 
+            //var pagamento = new Pagamento(DateTime.Now);
             #endregion
 
         }
     }
 
-
-
-
-
-    class PagamentoTeste
+    class Pagamento
     {
         public DateTime Vencimento;
 
-        public virtual void Pagar()
+        #region 1 - utilizando propriedade privada
+        //public DateTime DataPagamento
+        //{
+        //    get { return _dataPagamento; }
+        //    set { _dataPagamento = value; }
+        //}
+        #endregion
+
+        #region 2 - utlizando get set 
+        //public DateTime DataPagamento
+        //{
+        //    get {
+        //        Console.WriteLine("Utilizando O GET");
+        //        return _dataPagamento;
+        //    }
+
+        //    set {
+        //        Console.WriteLine("Utilizando O SET");
+        //        Console.WriteLine(value);
+        //        _dataPagamento = value;
+        //    }
+        //}
+        #endregion
+
+        public Pagamento(DateTime vencimento)
         {
-            Console.WriteLine("O usuario esta pagando");
+            Vencimento = vencimento;
+        }
+
+        //3 - Uso de Métodos nas classes - utilizando sobrecarga de métodos
+        public virtual void Pagar(string numero)
+        {
+            Console.WriteLine("método pagar de dentro da classe pagamento");
+            Console.WriteLine($"E este é o numero:{numero}");
         }
     }
 
-    class PagamentoBoletoTeste : PagamentoTeste
+    class PagamentoBoleto : Pagamento
     {
-        public string NumeroBoleto;
-
-        public PagamentoBoletoTeste(string numeroBoleto)
+        public PagamentoBoleto(DateTime banana) : base(banana)
         {
-            NumeroBoleto = numeroBoleto;
-        }
 
-        public override void Pagar()
+        }
+        public override void Pagar(string numero)
         {
-            base.Pagar();
-
-            Console.WriteLine("O usuario pagou - Boleto");
+            base.Pagar(numero);
         }
-    }
-
-    class PagamentoCartaoCreditoTeste : PagamentoTeste
-    {
-        public string NumeroCartao;
-
-        public override void Pagar()
-        {
-            base.Pagar();
-
-            Console.WriteLine("O usuario pagou - Cartao Credito");
-        }
-    }
-
-    public class Passaros
-    {
-       public virtual void Som()
-        {
-            Console.WriteLine("O som do animal é: ");
-        }
-    }
-
-    public class Papagaio : Passaros
-    {
-        public override void Som()
-        {
-            base.Som();
-            Console.WriteLine("Bom dia safado");
-        }
-    }
-
-    public class BemTeVi : Passaros
-    {
-        public override void Som()
-        {
-            //base.Som();
-            Console.WriteLine("Bem te vi");
-        }
-
     }
 }
