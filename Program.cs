@@ -3,82 +3,84 @@ using ExercicioDois.Polimorfismo;
 
 namespace OOP
 {
+    using System;
+
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            #region 1 - Uso das classes, objetos, herança, atribuindo valor as apropriedades e as utilizando, métodos.
-            //var pagamentoBoleto = new PagamentoBoleto("1231239999123123", DateTime.Now);
-            //pagamentoBoleto.Pagar();
+            // Cria uma instância de Pagamento com vencimento e valor
+            var pagamento = new Pagamento("DESCRIÇÃO FEITA NA HORA DO PAGAMENTO DE 50 REAIS", 50);
 
-            //var pagamentoCartao = new PagamentoCartaoCredito("1234 5678 9345 2934", DateTime.Now);
-            //pagamentoCartao.Pagar();
-            #endregion
-
-            #region 2 - uso de virtual com ovveride - Polimorfismo
-            //Papagaio papagaio = new Papagaio();
-            //var bemTeVi = new BemTeVi();
-            //papagaio.Som();
-            //bemTeVi.Som();
-            #endregion
-
-            #region 3 - (OBS.: PRECISO AJEITAR O ARQUIVO program.cs PARA MELHORAR A LEITURA)Propriedades - uso de prop privada, acessores (get, set), métodos 
-            //var pagamento = new Pagamento(DateTime.Now);
-            #endregion
-
+            // Exibe detalhes do pagamento e executa o pagamento
+            pagamento.MostrarDetalhes();
+            pagamento.Pagar();
         }
     }
 
     class Pagamento
     {
-        public DateTime Vencimento;
 
-        #region 1 - utilizando propriedade privada
-        //public DateTime DataPagamento
-        //{
-        //    get { return _dataPagamento; }
-        //    set { _dataPagamento = value; }
-        //}
-        #endregion
-
-        #region 2 - utlizando get set 
-        //public DateTime DataPagamento
-        //{
-        //    get {
-        //        Console.WriteLine("Utilizando O GET");
-        //        return _dataPagamento;
-        //    }
-
-        //    set {
-        //        Console.WriteLine("Utilizando O SET");
-        //        Console.WriteLine(value);
-        //        _dataPagamento = value;
-        //    }
-        //}
-        #endregion
-
-        public Pagamento(DateTime vencimento)
+        private string? _descricao;
+        public string? Descricao
         {
-            Vencimento = vencimento;
+            get
+            {
+                return _descricao;
+            }
+            set
+            {
+
+                // Definindo a descricao - Descricao feita na hora da instancia:
+
+                Console.WriteLine("1 - AQUI É O QUE ESTÁ DENTRO DE VALUE, NESSE CASO, O QUE O USUARIO ESCREVEU NO PARAMETRO DA INSTANCIA");
+                Console.WriteLine(value);
+                // Logo acima, no "value" é o texto recebido na hora da instancia
+
+
+                // aqui eu faço a alteracao para todo tipo de espaço na frase obter o underline: "_"
+                // Com isso todo valor dentro de Descricao (que é a propriedade principal de dentro desse get set) vai receber
+                // underline no lugar dos espaços.
+                _descricao = value.Replace(" ", "_");
+
+                Console.WriteLine("2 - AQUI É O QUE ESTÁ DEPOIS DE VALUE RECEBER UMA ALTERACAO");
+                Console.WriteLine(_descricao);
+
+                // Por qual razão isso foi feito?
+                // Apenas para mostrar que podemos alterar um valor no momento que passamos valores nos parametros, 
+                // evitando o uso de métodos
+            }
         }
 
-        //3 - Uso de Métodos nas classes - utilizando sobrecarga de métodos
-        public virtual void Pagar(string numero)
+
+        private int _valor;
+        public int Valor
         {
-            Console.WriteLine("método pagar de dentro da classe pagamento");
-            Console.WriteLine($"E este é o numero:{numero}");
+            // aqui não faço absolutamente nada com value, apenas faço com que um valor privado "_valor" receba dados de uma
+            // classe instanciada com uma propriedade publica de mesmo tipo, nesse caso, "int".
+            get { return _valor; }
+            private set { _valor = value; }
+        }
+
+        // Metodo construtor para receber a descricao e o valor
+        public Pagamento(string descricao, int valor)
+        {
+            Descricao = descricao;
+            Valor = valor;
+        }
+
+        public void MostrarDetalhes()
+        {
+            Console.WriteLine("==================MOSTRANDO DETALHES================");
+            Console.WriteLine($"Valor: {Valor}");
+            Console.WriteLine($"Descricao: {Descricao}");
+        }
+
+        public void Pagar()
+        {
+            Console.WriteLine("==================PAGAMENTO================");
+            Console.WriteLine($"Pagamento de {Valor} com descricao: {Descricao}");
         }
     }
 
-    class PagamentoBoleto : Pagamento
-    {
-        public PagamentoBoleto(DateTime banana) : base(banana)
-        {
-
-        }
-        public override void Pagar(string numero)
-        {
-            base.Pagar(numero);
-        }
-    }
 }

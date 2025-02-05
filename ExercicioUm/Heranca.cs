@@ -1,51 +1,38 @@
 ﻿
 namespace ExercicioUm.Heranca
 {
+    // Exemplo de herança, simplificada
+
+    // Este código define três classes relacionadas ao pagamento. A classe base "Pagamento" contém um método "Pagar" 
+    // que exibe uma mensagem indicando que o usuário está pagando. Duas classes derivadas, "PagamentoBoleto" e 
+    // "PagamentoCartaoCredito", herdam de "Pagamento" e adicionam funcionalidades específicas para pagamentos 
+    // com boleto e cartão de crédito, respectivamente. Cada uma dessas classes derivadas possui métodos específicos
+    // ("PagamentoComBoleto" e "PagamentoComCartaoCredito") que chamam o método "Pagar" da classe base e, em seguida,
+    // exibem mensagens adicionais específicas para cada tipo de pagamento.
+
     class Pagamento
     {
-        public DateTime Vencimento;
-
-        public Pagamento(DateTime vencimento)
+        public void Pagar()
         {
-            Vencimento = vencimento;
-        }
-
-        public virtual void Pagar()
-        {
-            Console.WriteLine($"O usuario esta pagando em: {Vencimento}");
+            Console.WriteLine("O usuario esta pagando...");
         }
     }
 
     class PagamentoBoleto : Pagamento
     {
-        public string NumeroBoleto;
-
-        public PagamentoBoleto(string numeroBoleto, DateTime vencimento) : base(vencimento)
+        public void PagamentoComBoleto()
         {
-            NumeroBoleto = numeroBoleto;
-        }
-
-        public override void Pagar()
-        {
-            base.Pagar();
-            Console.WriteLine($"O usuario pagou - Boleto de numero: {NumeroBoleto}");
+            Pagar();
+            Console.WriteLine("O usuario pagou - Boleto de numero: 123123");
         }
     }
 
     class PagamentoCartaoCredito : Pagamento
     {
-        public string NumeroCartao;
-
-        public PagamentoCartaoCredito(string numeroCartao, DateTime vencimento) : base(vencimento)
+        public void PagamentoComCartaoCredito()
         {
-            NumeroCartao = numeroCartao;
-        }
-
-        public override void Pagar()
-        {
-            base.Pagar();
-
-            Console.WriteLine($"O usuario pagou - Cartao Credito de numero {NumeroCartao}");
+            Pagar();
+            Console.WriteLine("O usuario pagou - Cartão de credito: 3842 2341 2343 2321");
         }
     }
 }
