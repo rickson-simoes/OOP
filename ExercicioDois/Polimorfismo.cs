@@ -5,7 +5,7 @@
     {
         public virtual void Som()
         {
-            Console.WriteLine("O som do animal é: ");
+            Console.WriteLine("O animal é:");
         }
     }
 

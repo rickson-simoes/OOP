@@ -9,18 +9,55 @@ namespace OOP
     {
         static void Main()
         {
-            // Cria uma instância de Pagamento com vencimento e valor
-            var pagamento = new Pagamento("DESCRIÇÃO FEITA NA HORA DO PAGAMENTO DE 50 REAIS", 50);
+            #region Inicio: Uso de uma classe com propriedades privadas
+            //// Cria uma instância de Pagamento com vencimento e valor
+            //// ======================================================================================
 
-            // Exibe detalhes do pagamento e executa o pagamento
-            pagamento.MostrarDetalhes();
-            pagamento.Pagar();
+            //var pagamento = new Pagamento("DESCRIÇÃO FEITA NA HORA DO PAGAMENTO DE 50 REAIS", 50);
+            //pagamento.MostrarDetalhes();
+            //pagamento.Pagar();
+            #endregion
+
+            #region Exercicio 1 Herança: Uso de heranças
+            //// NOTA.: estou utilizando "ExercicioUm.Heranca" para evitar erro de ambiguidade
+            //// entre o nome parecido de classes do exercicio 1 com o 2.
+            //// ======================================================================================
+
+            //var boleto = new ExercicioUm.Heranca.PagamentoBoleto();
+            //var cartaoCredito = new ExercicioUm.Heranca.PagamentoCartaoCredito();
+            //boleto.PagamentoComBoleto();
+            //Console.WriteLine("==========");
+            //cartaoCredito.PagamentoComCartaoCredito();
+            #endregion
+
+            #region Exercicio 2 Polimorfismo
+            //// Primeiro Exemplo
+            //// ======================================================================================
+
+            //var papagaio = new Papagaio();
+            //var bemTeVi = new BemTeVi();
+            //papagaio.Som();
+            //Console.WriteLine("==========");
+            //bemTeVi.Som();
+
+
+            //// Segundo Exemplo:
+            //// NOTA.: estou utilizando "ExercicioDois.Polimorfismo" para evitar erro de ambiguidade
+            //// entre os nomes parecidos de classes do exercicio 1 com o 2.
+            //// ======================================================================================
+
+            //var pagamentoBoleto = new ExercicioDois.Polimorfismo.PagamentoBoleto("12312392399229999", DateTime.Now);
+            //var pagamentoCartao = new ExercicioDois.Polimorfismo.PagamentoCartaoCredito("1234 1234 9834 2312", DateTime.Now);
+            //pagamentoBoleto.Pagar();
+            //Console.WriteLine("==========");
+            //pagamentoCartao.Pagar();
+            #endregion
+
         }
     }
 
     class Pagamento
     {
-
         private string? _descricao;
         public string? Descricao
         {
@@ -30,7 +67,6 @@ namespace OOP
             }
             set
             {
-
                 // Definindo a descricao - Descricao feita na hora da instancia:
 
                 Console.WriteLine("1 - AQUI É O QUE ESTÁ DENTRO DE VALUE, NESSE CASO, O QUE O USUARIO ESCREVEU NO PARAMETRO DA INSTANCIA");
